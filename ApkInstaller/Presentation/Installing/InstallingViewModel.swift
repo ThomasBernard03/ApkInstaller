@@ -15,14 +15,14 @@ extension InstallingView {
         
         var applicationName : String = ""
         var message : String = ""
-        var isLoading : Bool = false
+        var status : InstallingStatus = InstallingStatus.notStarted
         
         
         func installApk(path : URL) async {
             applicationName = path.lastPathComponent
-            isLoading = true
+            status = InstallingStatus.installing
             let result = adbHelper.installApk(path: path)
-            isLoading = false
+            status = InstallingStatus.error
             message = result
         }
     }

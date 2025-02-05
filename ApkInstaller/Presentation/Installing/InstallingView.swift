@@ -16,10 +16,29 @@ struct InstallingView: View {
     
     var body: some View {
         VStack {
-            Spacer()
-            Text("Installing \(viewModel.applicationName)")
-            ProgressView()
-                .progressViewStyle(.linear)
+            switch(viewModel.status){
+                
+            case .notStarted:
+                EmptyView()
+            case .installing:
+                ProgressView("Installing \(viewModel.applicationName)")
+                    .progressViewStyle(.linear)
+            case .installed:
+                Text("Sucess")
+            case .error:
+                VStack {
+                    Text("Error")
+                    Button(
+                        action: {
+                            NSApp.windows.last?.close()
+                        },
+                        label: {
+                            Text("Close")
+                        }
+                    )
+                }
+            }
+
         }
         .frame(width: 200, height: 80)
         .padding()
