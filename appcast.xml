@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>ApkInstaller</title>
+        <item>
+            <title>2025.02.1</title>
+            <pubDate>Wed, 2 Feb 2025 15:53:01 +0200</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>2025.02.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/ThomasBernard03/ApkInstaller/releases/download/2025.02.1/ApkInstaller.dmg" length="2455118" type="application/octet-stream" sparkle:edSignature="PynSgaIixFHoVuotiZrWtFpQ3eIh0lb2zmvHyjhbrZ+FLxyydbzTCJ6ItyS+QuU+Ekms7El7EJOhzyAv8UjiAA=="/>
+        </item>
+    </channel>
+</rss>

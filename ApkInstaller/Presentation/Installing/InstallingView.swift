@@ -26,21 +26,27 @@ struct InstallingView: View {
             case .installed:
                 Text("Sucess")
             case .error:
-                VStack {
-                    Text("Error")
+                VStack(alignment: .trailing) {
+                    Text(viewModel.message)
+                    Spacer()
+                    
                     Button(
                         action: {
-                            NSApp.windows.last?.close()
+                            NSApplication.shared.windows.last?.close()
+                            NSApplication.shared.terminate(nil)
                         },
                         label: {
+                            Spacer()
                             Text("Close")
+                            Spacer()
                         }
                     )
                 }
             }
 
         }
-        .frame(width: 200, height: 80)
+//        .frame(width: 200, height: 80)
+        .frame(minWidth: 200, minHeight: 80)
         .padding()
         .onAppear {
             Task {
