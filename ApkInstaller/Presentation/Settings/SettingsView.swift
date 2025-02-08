@@ -17,10 +17,10 @@ struct SettingsView: View {
             Tab("General", systemImage: "gear") {
                 GeneralSettingsView(updater:updater)
             }
-            Tab("Advanced", systemImage: "star") {
-//                AdvancedSettingsView()
-                Text("Help")
-            }
+//            Tab("Advanced", systemImage: "star") {
+////                AdvancedSettingsView()
+//                Text("Help")
+//            }
         }
         .scenePadding()
         .frame(maxWidth: 350, minHeight: 100)

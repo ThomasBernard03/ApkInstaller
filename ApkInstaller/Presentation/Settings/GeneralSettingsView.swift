@@ -8,6 +8,7 @@ import SwiftUI
 import Sparkle
 
 // https://sparkle-project.org/documentation/programmatic-setup/
+// https://medium.com/@matteospada.m/how-to-integrate-the-sparkle-framework-into-a-swiftui-app-for-macos-98ca029f83f7
 struct GeneralSettingsView: View {
     @AppStorage("launchAtLogin") private var launchAtLogin = true
     @AppStorage("fontSize") private var fontSize = 12.0

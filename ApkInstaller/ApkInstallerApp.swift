@@ -22,11 +22,7 @@ struct ApkInstallerApp: App {
     
     var body: some Scene {
         MenuBarExtra("Apk Installer", image: "AndroidSymbol") {
-            ContentView()
-            Button("Quit"){
-                NSApplication.shared.terminate(nil)
-            }
-            SettingsLink(label: { Text("Show settings") })
+            MenuBarExtraContent()
         }
         
         Settings {

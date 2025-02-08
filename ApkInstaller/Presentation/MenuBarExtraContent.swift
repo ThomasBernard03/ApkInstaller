@@ -7,13 +7,17 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MenuBarExtraContent: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
+            Image("AndroidSymbol")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Apk Installer")
+            
+            Divider()
+            
+            SettingsLink(label: { Text("Show settings") })
             
             Button("Quit"){
                 NSApplication.shared.terminate(nil)
@@ -24,5 +28,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    MenuBarExtraContent()
 }
