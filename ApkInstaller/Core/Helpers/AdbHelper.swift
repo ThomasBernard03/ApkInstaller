@@ -16,12 +16,12 @@ class AdbHelper {
     }
     
     
-    func installApk(path : URL) -> String {
+    func installApk(path: URL) -> (success: Bool, message: String) {
         let command = "install \(path.path())"
         return runAdbCommand(command)
     }
     
-    private func runAdbCommand(_ command: String) -> String {
+    private func runAdbCommand(_ command: String) -> (success: Bool, message: String) {
         let task = Process()
         let pipe = Pipe()
         
@@ -30,9 +30,14 @@ class AdbHelper {
         task.arguments = ["-c", "\(adb!.path) \(command)"]
         task.launchPath = "/bin/sh"
         task.launch()
+        task.waitUntilExit()
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        return output
+        
+        // Vérifier le code de retour du processus
+        let success = (task.terminationStatus == 0)
+        
+        return (success, output)
     }
 }

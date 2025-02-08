@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct MenuBarExtraContent: View {
+    
+    @AppStorage("installCount") var installCount: Int = 0
+    
     var body: some View {
         VStack {
             Image("AndroidSymbol")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Apk Installer")
+            Text("\(installCount) Apk installed")
+            
+            
             
             Divider()
             
