@@ -4,11 +4,11 @@
         <title>ApkInstaller</title>
         <item>
             <title>2025.02.1</title>
-            <pubDate>Wed, 2 Feb 2025 15:53:01 +0200</pubDate>
+            <pubDate>Sun, 09 Feb 2025 22:02:37 +0100</pubDate>
             <sparkle:version>1</sparkle:version>
             <sparkle:shortVersionString>2025.02.1</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/ThomasBernard03/ApkInstaller/releases/download/2025.02.1/ApkInstaller.dmg" length="2455118" type="application/octet-stream" sparkle:edSignature="PynSgaIixFHoVuotiZrWtFpQ3eIh0lb2zmvHyjhbrZ+FLxyydbzTCJ6ItyS+QuU+Ekms7El7EJOhzyAv8UjiAA=="/>
+            <sparkle:minimumSystemVersion>15.1</sparkle:minimumSystemVersion>
+            <enclosure url="https://thomasbernard03.github.io/ApkInstaller/ApkInstaller.dmg" length="7467605" type="application/octet-stream" sparkle:edSignature="Ug5mNwKuy7Ufi0J2ExCubB8e6GNxGvSL97RWat5j5mh40LqxUHxLFOliK0WBAnj6DA64F5UWATCgX037oGfYDA=="/>
         </item>
     </channel>
 </rss>
