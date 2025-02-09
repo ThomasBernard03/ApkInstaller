@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func showMainWindow() {
         if mainWindowController == nil {
-            let contentView = MainView() 
+            let contentView = MainView()
 
             let window = NSWindow(
                 contentRect: NSRect(x: 100, y: 100, width: 600, height: 400),
@@ -46,15 +46,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             window.setFrameAutosaveName("Main Window")
             window.contentView = NSHostingView(rootView: contentView)
             
-            // Assure que l'application devient active
             window.makeKeyAndOrderFront(nil)
 
-            // Crée un NSWindowController pour gérer la fenêtre
             let windowController = NSWindowController(window: window)
             self.mainWindowController = windowController
 
-            // Active l'application et affiche le menu
             NSApp.activate(ignoringOtherApps: true)
+            
+            window.delegate = self
         }
+    }
+}
+
+extension AppDelegate: NSWindowDelegate {
+    func windowShouldClose(_ sender: NSWindow) -> Bool {
+        NSApp.terminate(nil)
+        return true
     }
 }
