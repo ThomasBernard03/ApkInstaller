@@ -9,7 +9,8 @@ import Foundation
 
 class AdbHelper {
     
-    let adb = Bundle.main.url(forResource: "adb", withExtension: nil)
+    private let adb = Bundle.main.url(forResource: "adb", withExtension: nil)
+    private let logger = FileLogger()
     
     init() {
         _ = runAdbCommand("root")
@@ -22,6 +23,9 @@ class AdbHelper {
     }
     
     private func runAdbCommand(_ command: String) -> (success: Bool, message: String) {
+        let startTime = Date()
+        
+        logger.debug("Running command: \(command)")
         let task = Process()
         let pipe = Pipe()
         
@@ -35,9 +39,16 @@ class AdbHelper {
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
-        // Vérifier le code de retour du processus
         let success = (task.terminationStatus == 0)
+        
+        let endTime = Date()
+        let executionTime = endTime.timeIntervalSince(startTime) * 1000
+        
+        logger.debug("Command execution time: \(Int(executionTime)) ms")
+        logger.debug("Success: \(success)")
+        logger.debug("Output: \(output)")
         
         return (success, output)
     }
+
 }

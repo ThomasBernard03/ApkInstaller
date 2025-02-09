@@ -11,6 +11,14 @@ struct MenuBarExtraContent: View {
     
     @AppStorage("installCount") var installCount: Int = 0
     
+    private func openLogsFolder() {
+        let path = Constants.swiftyFileDestination.logFileURL?.path() ?? ""
+        let task = Process()
+        task.launchPath = "/usr/bin/open"
+        task.arguments = [path]
+        task.launch()
+    }
+    
     var body: some View {
         VStack {
             Image("AndroidSymbol")
@@ -19,9 +27,12 @@ struct MenuBarExtraContent: View {
             Text("Apk Installer")
             Text("\(installCount) Apk installed")
             
-            
-            
             Divider()
+            
+            
+            Button("Show logs") {
+              openLogsFolder()
+            }
             
             SettingsLink(label: { Text("Show settings") })
             

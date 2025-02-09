@@ -10,7 +10,7 @@ import Foundation
 extension InstallingView {
     @Observable
     class ViewModel {
-        private let logger = AppLogger()
+        private let logger = FileLogger()
         private let adbHelper = AdbHelper()
         
         var applicationName : String = ""
@@ -23,7 +23,7 @@ extension InstallingView {
             status = InstallingStatus.installing
             let result = adbHelper.installApk(path: path)
             status = InstallingStatus.error
-            message = result
+            message = result.message
         }
     }
 }
