@@ -17,9 +17,19 @@ class AdbHelper {
     }
     
     
-    func installApk(path: URL) -> (success: Bool, message: String) {
+    func installApk(path: URL) -> InstallingResult {
         let command = "install \(path.path())"
-        return runAdbCommand(command)
+        let output = runAdbCommand(command)
+        
+        if(output.success){
+            return InstallingResult.installed
+        }
+        else if (output.message.contains("no devices/emulators found")){
+            return InstallingResult.noDeviceConnected
+        }
+        else {
+            return InstallingResult.unknownError(output.message)
+        }
     }
     
     private func runAdbCommand(_ command: String) -> (success: Bool, message: String) {

@@ -24,25 +24,33 @@ struct InstallingView: View {
                 ProgressView("Installing \(viewModel.applicationName)")
                     .progressViewStyle(.linear)
             case .installed:
-                Text("Sucess")
-            case .error:
+                SuccessView()
+            case .unknownError:
                 VStack(alignment: .trailing) {
                     Text(viewModel.message)
                     Spacer()
-                    
-                    Button(
-                        action: {
-                            NSApplication.shared.windows.last?.close()
-                            NSApplication.shared.terminate(nil)
-                        },
-                        label: {
-                            Spacer()
-                            Text("Close")
-                            Spacer()
-                        }
-                    )
+                
                 }
+            case .noDeviceConnected:
+                NoDeviceConnectedView()
             }
+            
+            Spacer()
+            if(viewModel.status != .installing){
+
+                Button(
+                    action: {
+                        NSApplication.shared.windows.last?.close()
+                        NSApplication.shared.terminate(nil)
+                    },
+                    label: {
+                        Spacer()
+                        Text("Close")
+                        Spacer()
+                    }
+                )
+            }
+
 
         }
 //        .frame(width: 200, height: 80)
@@ -56,6 +64,6 @@ struct InstallingView: View {
     }
 }
 
-#Preview {
-    InstallingView(path: URL(filePath:"Desktop/myapp.apk")!)
-}
+//#Preview {
+//    InstallingView(path: URL(filePath:"Desktop/myapp.apk")!)
+//}

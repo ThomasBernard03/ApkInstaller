@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension InstallingView {
+    
+    
     @Observable
     class ViewModel {
         private let logger = FileLogger()
@@ -18,12 +21,20 @@ extension InstallingView {
         var status : InstallingStatus = InstallingStatus.notStarted
         
         
+        
         func installApk(path : URL) async {
             applicationName = path.lastPathComponent
             status = InstallingStatus.installing
             let result = adbHelper.installApk(path: path)
-            status = InstallingStatus.error
-            message = result.message
+            switch(result){
+                
+            case .installed:
+                status = InstallingStatus.installed
+            case .unknownError(let message):
+                status = InstallingStatus.unknownError(message)
+            case .noDeviceConnected:
+                status = InstallingStatus.noDeviceConnected
+            }
         }
     }
 }

@@ -16,7 +16,15 @@ struct MainView: View {
             Text(String(installCount))
                 .font(.largeTitle)
             Text("Installed applications")
+            
+            
+            Button("Show logs") {
+                Constants.openLogsFolder()
+            }
+            
+            SettingsLink(label: { Text("Show settings") })
         }
+        .padding()
         
     }
 }

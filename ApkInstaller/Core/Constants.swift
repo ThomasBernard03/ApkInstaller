@@ -13,5 +13,15 @@ class Constants {
     
     static let swiftyLogger = SwiftyBeaver.self
     static let swiftyFileDestination = FileDestination()
+    
+    static let applicationVersion = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "-"
 
+    
+    static func openLogsFolder() {
+        let path = Constants.swiftyFileDestination.logFileURL?.path() ?? ""
+        let task = Process()
+        task.launchPath = "/usr/bin/open"
+        task.arguments = [path]
+        task.launch()
+    }
 }

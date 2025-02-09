@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 view: { return InstallingView(path: url) },
                 contentRect: NSRect(
                     origin: CGPoint(x: mouseLocation.x, y: mouseLocation.y),
-                    size: CGSize()
+                    size: CGSize(width: 300, height: 120)
                 )
             )
             panel.makeKeyAndOrderFront(nil)

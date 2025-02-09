@@ -26,10 +26,16 @@ struct ApkInstallerApp: App {
         MenuBarExtra("", isInserted: $hiddenMenu) {
           EmptyView()
         }
+        Settings {
+            SettingsView(
+                updater: updaterController.updater
+            )
+        }
         .commands {
             CommandGroup(after: .appInfo) {
                 GeneralSettingsView(updater: updaterController.updater)
             }
         }
+        
     }
 }

@@ -5,9 +5,12 @@
 //  Created by Thomas Bernard on 02/02/2025.
 //
 
-enum InstallingStatus {
+enum InstallingStatus : Equatable {
     case notStarted
     case installing
     case installed
-    case error
+    
+    /** Errors **/
+    case unknownError(String)
+    case noDeviceConnected
 }
