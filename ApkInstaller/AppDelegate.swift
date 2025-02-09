@@ -1,28 +1,60 @@
-//
-//  AppDelegate.swift
-//  ApkInstaller
-//
-//  Created by Thomas Bernard on 02/02/2025.
-//
-
-
 import SwiftUI
 import AppKit
 
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    private var hasOpenedWithFile = false
+    var mainWindowController: NSWindowController?
 
     func application(_ application: NSApplication, open urls: [URL]) {
-        urls.forEach { url in
+        hasOpenedWithFile = true
+        
+        if let url = urls.first {
             let mouseLocation = NSEvent.mouseLocation
-
+            
             let panel = FloatingPanel(
-                view: { return InstallingView(path:url) },
+                view: { return InstallingView(path: url) },
                 contentRect: NSRect(
                     origin: CGPoint(x: mouseLocation.x, y: mouseLocation.y),
                     size: CGSize()
                 )
             )
             panel.makeKeyAndOrderFront(nil)
+        }
+    }
+    
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        DispatchQueue.main.async {
+            if !self.hasOpenedWithFile {
+                NSApp.setActivationPolicy(.regular)
+                self.showMainWindow()
+            }
+        }
+    }
+    
+    private func showMainWindow() {
+        if mainWindowController == nil {
+            let contentView = MainView() 
+
+            let window = NSWindow(
+                contentRect: NSRect(x: 100, y: 100, width: 600, height: 400),
+                styleMask: [.titled, .closable, .resizable, .miniaturizable],
+                backing: .buffered,
+                defer: false
+            )
+            window.center()
+            window.setFrameAutosaveName("Main Window")
+            window.contentView = NSHostingView(rootView: contentView)
+            
+            // Assure que l'application devient active
+            window.makeKeyAndOrderFront(nil)
+
+            // Crée un NSWindowController pour gérer la fenêtre
+            let windowController = NSWindowController(window: window)
+            self.mainWindowController = windowController
+
+            // Active l'application et affiche le menu
+            NSApp.activate(ignoringOtherApps: true)
         }
     }
 }

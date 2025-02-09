@@ -20,20 +20,16 @@ struct ApkInstallerApp: App {
          updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
      }
     
+    @State private var hiddenMenu: Bool = false
+    
     var body: some Scene {
-        MenuBarExtra("Apk Installer", image: "AndroidSymbol") {
-            MenuBarExtraContent()
-        }
-        
-        Settings {
-            SettingsView(
-                updater: updaterController.updater
-            )
+        MenuBarExtra("", isInserted: $hiddenMenu) {
+          EmptyView()
         }
         .commands {
-              CommandGroup(after: .appInfo) {
-                  GeneralSettingsView(updater: updaterController.updater)
-              }
-          }
+            CommandGroup(after: .appInfo) {
+                GeneralSettingsView(updater: updaterController.updater)
+            }
+        }
     }
 }
