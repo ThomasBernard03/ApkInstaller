@@ -21,16 +21,28 @@ struct InstallingView: View {
             case .notStarted:
                 EmptyView()
             case .installing:
-                ProgressView("Installing \(viewModel.applicationName)")
+                HStack(spacing: 12) {
+                    Image(systemName: "clock")
+                        .symbolEffect(.wiggle)
+                        .font(.largeTitle)
+                        .foregroundStyle(.gray)
+                    VStack(alignment:.leading) {
+                        Text("Installing...")
+                            .font(.title2)
+                        Text(viewModel.applicationName)
+                    }
+                    
+                    Spacer()
+                }
+                Spacer()
+                
+                ProgressView("")
                     .progressViewStyle(.linear)
+                
             case .installed:
                 SuccessView()
-            case .unknownError:
-                VStack(alignment: .trailing) {
-                    Text(viewModel.message)
-                    Spacer()
-                
-                }
+            case .unknownError(let message):
+                UnknownErrorView(message: message)
             case .noDeviceConnected:
                 NoDeviceConnectedView()
             }

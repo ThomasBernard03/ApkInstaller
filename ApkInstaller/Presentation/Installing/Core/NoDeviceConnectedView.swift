@@ -15,7 +15,8 @@ struct NoDeviceConnectedView: View {
                 .font(.largeTitle)
                 .foregroundStyle(.orange)
             VStack(alignment:.leading) {
-                Text("No Android device connected")
+                Text("No device connected")
+                    .font(.title2)
                 Text("Plug a phone to your mac and retry")
             }
         }

@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 view: { return InstallingView(path: url) },
                 contentRect: NSRect(
                     origin: CGPoint(x: mouseLocation.x, y: mouseLocation.y),
-                    size: CGSize(width: 300, height: 120)
+                    size: CGSize(width: 300, height: 100)
                 )
             )
             panel.makeKeyAndOrderFront(nil)
@@ -37,12 +37,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let contentView = MainView()
 
             let window = NSWindow(
-                contentRect: NSRect(x: 100, y: 100, width: 600, height: 400),
-                styleMask: [.titled, .closable, .resizable, .miniaturizable],
+                contentRect: NSRect(x: 1000, y: 4000, width: 1000, height: 2000),
+                styleMask: [.titled, .closable, .resizable],
                 backing: .buffered,
                 defer: false
             )
-            window.center()
+//            window.center()
             window.setFrameAutosaveName("Main Window")
             window.contentView = NSHostingView(rootView: contentView)
             
@@ -54,6 +54,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NSApp.activate(ignoringOtherApps: true)
             
             window.delegate = self
+            window.setFrame(NSRect(x: 1000, y: 4000, width: 1000, height: 2000), display: true)
+            window.setContentSize(CGSize(width: 300, height: 1000))
         }
     }
 }
