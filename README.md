@@ -13,6 +13,8 @@
 
 Want to install an application on Android? Simply double-click on the `.apk` file and the application will be installed on your device.
 
+![Demo](./Documentation/Demo.gif)
+
 ## Roadmap
 
 - In case of conflict, allow the user to choose whether to uninstall the application on the device.
